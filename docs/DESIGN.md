@@ -121,7 +121,7 @@ confidence = sqrt(size) x appearance x (0.5 + 0.5 x compact) x local x views x s
 
 A move combines its two halves with a noisy-OR and multiplies by `0.6 + 0.4 x match quality`. Changes at 0.5 or above are reported; below that they are listed as "possible change (low confidence)" in every output, dotted on the map and grouped separately in the 3D view. Small regions under 120 points are only listed if their evidence is very strong.
 
-Nothing is dropped silently. Every filter records what it rejected and why (`rejected_by_filters` in `report.json`, counts by reason in `report.md`), next to the candidates CLIP suppressed as bare wall or floor. Each reported change also carries the evidence behind its score.
+Every filter records what it rejected and why (`rejected_by_filters` in `report.json`, counts by reason in `report.md`), next to the candidates CLIP suppressed as bare wall or floor. Each reported change also carries the evidence behind its score.
 
 These are heuristic evidence scores, not calibrated probabilities. The factors and the 0.5 tier were tuned on the corridor (and the failed first bedroom attempt), with the no-change pairs as the main check. That is why the room was recorded as a held-out test (below).
 
@@ -135,7 +135,7 @@ Each region is cropped from the full-resolution frame that sees it best and labe
 
 ## Held-out protocol
 
-The corridor, the first (failed) recordings of my bedroom and the synthetic room served as the development set: everything in sections 2 to 10 was adjusted while looking at their results. To get one honest number, the bedroom was cleared and recorded again with a different protocol (0.5x lens, landscape), and before the first analysis of those new recordings:
+The corridor, the first (failed) recordings of my bedroom and the synthetic room served as the development set: everything in sections 2 to 10 was adjusted while looking at their results. To get a test the settings were not fitted to, the bedroom was cleared and recorded again with a different protocol (0.5x lens, landscape), and before the first analysis of those new recordings:
 
 1. The code and config were frozen and hashed (`heldout/FREEZE.json`, checked by `scripts/verify_freeze.py`).
 2. The ground truth was written down from the person who moved the objects, with the backpack's move measured by tape.
@@ -145,7 +145,7 @@ Later edits touch only the 3D page and the synthetic scoring, and are listed wit
 
 ## Results and what they taught
 
-Full tables are in the README and in `examples/ablation.md`.
+Full tables are in `docs/RESULTS.md` and `examples/ablation.md`.
 
 **Held-out room recordings** (4 changes: jug removed, backpack moved 1.7 m, box moved from a chair seat to the floor, duffel bag added):
 
@@ -167,11 +167,11 @@ Full tables are in the README and in `examples/ablation.md`.
 
 What they taught:
 
-* **The visibility test is the idea that carries the result.** Against a nearest-neighbour diff on the same clouds, it removes 56 to 96% of spatial false positives (about 90% on a typical pair, held-out included), without losing a real change. The filters and the confidence score turn the rest into a clean confident tier.
-* **The no-change pairs are the most useful evaluation.** Without them, the opposite-direction corridor result looks better than it is.
+* **Visibility test vs a nearest-neighbour diff:** on the same clouds it removes 56 to 96% of spatial false positives (about 90% on a typical pair, held-out included), without losing a real change. The filters and the confidence score remove most of the rest.
+* **No-change pairs:** they exposed the opposite-direction misalignment, which the change pairs alone did not show.
 * **Localisation transferred to the new recordings; association did not.** In the room every confident prediction sits where something changed, and the no-change pair has none. But only 5 of the 12 real changes come out as the right confident event; 2 more are found at one end only. Both association mistakes happen where the scene is hardest: two dark bags change on the same bed, and two different objects take turns on the same chair seat. The matcher sees a removal and an addition that agree in size, colour, CLIP embedding and height, and calls it a move. It has no outcome for "replaced by a different object in the same place". The same situation also hides changes: the backpack placed where the box stood fills space that was already occupied, so only a thin slice of it registers as new, too small and too light to pass the matcher's size and colour checks against the backpack's removal.
 * **Labels from one crop are fragile.** The best view of a duffel bag on a bed is mostly bed. The geometry was right in every one of those cases; the name was not.
-* **Recording matters more than any threshold.** The first bedroom attempt (portrait, 1x lens, mostly turning on the spot, thin clutter everywhere) failed. The same room, cleared and filmed in landscape on the 0.5x lens, gave the cleanest reconstruction in the project (stitch residual 0.3% against 0.7 to 1.6% for the corridor) and the held-out result above. Most of sections 6 to 8 came from studying the failure.
+* **Recording matters more than any threshold.** The first bedroom attempt (portrait, 1x lens, mostly turning on the spot, thin clutter everywhere) failed. The same room, cleared and filmed in landscape on the 0.5x lens, gave a tighter reconstruction (stitch residual 0.3% against 0.7 to 1.6% for the corridor) and the held-out result above. Most of sections 6 to 8 came from studying the failure.
 
 ## Footage quality check
 

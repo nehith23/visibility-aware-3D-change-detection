@@ -39,11 +39,11 @@ Recorded and analysed after the settings were frozen (`heldout/FREEZE.json`); no
 | full pipeline, every candidate | 5/5 found, 1 spatial FP | 4/5 found, 0 spatial FP | 5/5 found, 2 spatial FP | 4 spatial FP |
 | full pipeline, confident only | **5/5 found, 1 spatial FP** | **4/5 found, 0 spatial FP** | **4/5 found, 0 spatial FP** | **0 spatial FP** |
 
-The room_A confident spatial FP is the wrong jug pairing's arrival end. It is confident here (0.54) only because CLIP is off; with CLIP it scores 0.44 (see the README).
+The room_A confident spatial FP is the wrong jug pairing's arrival end. It is confident here (0.54) only because CLIP is off; with CLIP it scores 0.44 (see docs/RESULTS.md).
 
 ## Reading it
 
-* **The visibility test is what carries the result.** Against a nearest-neighbour diff on identical clouds it removes 56 to 96% of the spatial false positives (about 90% on a typical pair), held-out pairs included, without losing a change location. A nearest-neighbour diff reports every surface the other video did not happen to see.
+* Against a nearest-neighbour diff on identical clouds, the visibility test removes 56 to 96% of the spatial false positives (about 90% on a typical pair), held-out pairs included, without losing a change location. A nearest-neighbour diff reports every surface the other video did not happen to see.
 * "Every candidate" can exceed "visibility only" because it also lists small regions as low-confidence candidates. None of the extra ones reaches the confident tier.
 * The confident tier is clean on same-direction corridor pairs and on every room pair except the CLIP-off jug pairing. Opposite-direction recordings remain the weak case.
 
@@ -54,6 +54,6 @@ This is a coarse location-coverage check, not object-level precision and recall:
 * **The reference locations are not independent measurements.** The ground truth of *what* changed comes from the person who moved the objects, but the (x, y) of each change was read off the pipeline's own change boxes and checked by eye against the evidence crops and videos (`examples/ground_truth.json`). They do not validate geometric accuracy. The one independent measurement is the backpack's move: 1.58 m from the boxes against 1.7 m by tape.
 * `score()` ignores change type, object identity and height, and does not penalise several regions near one location.
 * A 0.5 m radius can merge nearby changes: in the room, the chair seat and the box's new spot on the floor are 0.41 m apart.
-* It cannot tell whether a removal and an addition were **paired** correctly. The two wrong associations in the room count as hits here; the README lists them.
+* It cannot tell whether a removal and an addition were **paired** correctly. The two wrong associations in the room count as hits here; docs/RESULTS.md lists them.
 
 An object-level evaluation would need independent annotations and one-to-one, type-aware matching.

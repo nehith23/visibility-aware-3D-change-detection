@@ -18,7 +18,7 @@ Coverage was good: both clips see the whole room, with the floor in view most of
 ## What the real recordings taught us
 
 * **The cluttered bedroom on the 1x lens did not work.** There was no room to step back, so the camera mostly turned on the spot, and thin clutter (a bike, bed slats, cables) produced false changes.
-* **The same bedroom, cleared, on the 0.5x lens in landscape, worked.** The wide lens keeps most of a small room in every frame, so frames overlap and still have parallax. That gave the best reconstruction in the project and the held-out result in the README. Clear thin, see-through clutter, cover mirrors, switch screens off or leave them static, and keep fans still.
+* **The same bedroom, cleared, on the 0.5x lens in landscape, worked.** The wide lens keeps most of a small room in every frame, so frames overlap and still have parallax. That gave the best reconstruction in the project and the held-out result in docs/RESULTS.md. Clear thin, see-through clutter, cover mirrors, switch screens off or leave them static, and keep fans still.
 * **A corridor worked.** Walking its length gives the camera real sideways and forward motion, and the floor stays in view.
 * **Walk the same direction in "before" and "after".** Same-direction pairs registered within 0.2 degrees and found every change. Opposite-direction pairs were 2 to 3 degrees off and reported door frames as changes. If you want a second direction, record it as an extra pass, not instead.
 * **Film every spot that changed in the "after" video**, including the new position of anything moved. One "after" clip never saw where the backpack went, so it could only report it as removed.

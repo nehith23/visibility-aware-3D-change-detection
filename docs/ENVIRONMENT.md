@@ -19,7 +19,7 @@ The analysis step (`reanalyse`, `demo`, tests) is pure numpy and was also run on
 
 | what | command | needs |
 |---|---|---|
-| room_A or corridor_right outputs from the shipped reconstruction and keyframes | `python -m roomdiff reanalyse --out <copy of examples/room_A> --camera-height 1.20` | CPU; CLIP weights for labels |
+| room_A or corridor_right outputs from the shipped reconstruction and keyframes | `python scripts/try_example.py [room_A or corridor_right]` | CPU; CLIP weights for labels |
 | same, without labels | add `--no-clip` | CPU only |
 | all corridor and room results from the videos | `run_all.bat` (corridor) / `run_room.bat` (room), or `python -m roomdiff run ...` per pair | NVIDIA GPU; `corridor_videos.zip` and `room_videos.zip` from the release unzipped into `data\` |
 | ablation table | `python scripts/ablation.py examples/ground_truth.json` | CPU; `reconstructions.zip` from the release unzipped into `examples/` |
