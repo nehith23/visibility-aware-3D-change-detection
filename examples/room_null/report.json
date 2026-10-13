@@ -1,0 +1,349 @@
+{
+  "summary": {
+    "scale": 2.091977646900717,
+    "camera_height": 1.2,
+    "floor_inlier_ratio": 0.7988503166120268,
+    "alignment": {
+      "icp_rotation_deg": 0.04549579358724918,
+      "icp_translation_m": 0.0028719390232071124,
+      "icp_overlap_before": 0.8658128837463779,
+      "icp_overlap_after": 0.8674745182273197,
+      "icp_iterations": 7,
+      "icp": "rejected"
+    },
+    "coverage": {
+      "before_verified": 0.9015606375606375,
+      "after_verified": 0.9610185417188675
+    },
+    "point_states": {
+      "before": {
+        "points": 180375,
+        "present": 0.8945363825363826,
+        "gone": 0.005932085932085932,
+        "unobserved": 0.09843936243936244,
+        "ambiguous": 0.0010921690921690923
+      },
+      "after": {
+        "points": 159640,
+        "present": 0.9564896016036081,
+        "gone": 0.004472563267351541,
+        "unobserved": 0.03898145828113255,
+        "ambiguous": 5.637684790779253e-05
+      }
+    },
+    "suppressed": [
+      "after: region at [2.04, 1.77, 1.32] looked like 'plain wall' (61%)"
+    ],
+    "rejected_by_filters": [
+      {
+        "scan": "before",
+        "center": [
+          1.75,
+          2.64,
+          0.93
+        ],
+        "size_m": [
+          0.38,
+          0.22,
+          0.35
+        ],
+        "points": 140,
+        "filter": "looks the same in the other recording",
+        "detail": "only 18% of the see-through views look different"
+      },
+      {
+        "scan": "before",
+        "center": [
+          -0.25,
+          1.97,
+          1.14
+        ],
+        "size_m": [
+          0.13,
+          0.09,
+          0.16
+        ],
+        "points": 49,
+        "filter": "see-through structure (slats, spokes, cables)",
+        "detail": "92% of observations on depth edges, 46% expected for a solid object"
+      },
+      {
+        "scan": "after",
+        "center": [
+          2.03,
+          2.48,
+          1.22
+        ],
+        "size_m": [
+          0.25,
+          0.07,
+          0.16
+        ],
+        "points": 32,
+        "filter": "looks the same in the other recording",
+        "detail": "only 34% of the see-through views look different"
+      },
+      {
+        "scan": "before",
+        "center": [
+          1.35,
+          0.93,
+          0.57
+        ],
+        "size_m": [
+          0.17,
+          0.13,
+          0.24
+        ],
+        "points": 61,
+        "filter": "small and evidence not strong enough",
+        "detail": ""
+      },
+      {
+        "scan": "before",
+        "center": [
+          1.96,
+          2.48,
+          0.81
+        ],
+        "size_m": [
+          0.23,
+          0.15,
+          0.29
+        ],
+        "points": 51,
+        "filter": "small and evidence not strong enough",
+        "detail": ""
+      },
+      {
+        "scan": "before",
+        "center": [
+          2.14,
+          0.1,
+          0.13
+        ],
+        "size_m": [
+          0.21,
+          0.14,
+          0.27
+        ],
+        "points": 48,
+        "filter": "small and evidence not strong enough",
+        "detail": ""
+      },
+      {
+        "scan": "after",
+        "center": [
+          -0.32,
+          2.28,
+          0.99
+        ],
+        "size_m": [
+          0.13,
+          0.11,
+          0.16
+        ],
+        "points": 47,
+        "filter": "small and evidence not strong enough",
+        "detail": ""
+      },
+      {
+        "scan": "after",
+        "center": [
+          0.11,
+          1.58,
+          0.13
+        ],
+        "size_m": [
+          0.13,
+          0.04,
+          0.26
+        ],
+        "points": 26,
+        "filter": "small and evidence not strong enough",
+        "detail": ""
+      }
+    ],
+    "config": {
+      "frames_per_video": 0,
+      "max_side": 0,
+      "conf_drop_percentile": 25.0,
+      "camera_height": 1.2,
+      "scale": 0.0,
+      "pixel_stride": 2,
+      "voxel": 0.02,
+      "flying_pixel_ratio": 0.04,
+      "min_self_support": 2,
+      "max_depth": 4.5,
+      "depth_tol_abs": 0.06,
+      "depth_tol_rel": 0.04,
+      "window": 5,
+      "grazing_min_cos": 0.5,
+      "grazing_min_cos_floor": 0.2,
+      "floor_band": 0.06,
+      "min_height": 0.08,
+      "min_votes": 2,
+      "vanish_ratio": 0.7,
+      "cluster_eps": 0.06,
+      "cluster_min_samples": 6,
+      "min_cluster_points": 25,
+      "min_cluster_extent": 0.07,
+      "max_sheet_area": 1.0,
+      "sheet_max_thickness": 0.03,
+      "sheet_max_flatness": 0.2,
+      "sheet_min_extent": 0.12,
+      "match_cost": 0.85,
+      "merge_gap": 0.1,
+      "move_max_size_ratio": 2.0,
+      "move_max_color": 30.0,
+      "move_min_points": 60,
+      "pole_max_width": 0.06,
+      "pole_aspect": 3.0,
+      "line_max_spread": 0.018,
+      "local_radius": 0.6,
+      "local_keep_gone": 0.6,
+      "edge_max_excess": 0.25,
+      "min_report_points": 120,
+      "confident_score": 0.5,
+      "appearance_delta_e": 18.0,
+      "appearance_min_changed": 0.45,
+      "use_clip": true,
+      "clip_model": "ViT-B-32",
+      "clip_pretrained": "laion2b_s34b_b79k"
+    }
+  },
+  "changes": [
+    {
+      "id": 1,
+      "type": "removed",
+      "label": "cabinet",
+      "label_score": 0.596,
+      "color": "brown",
+      "description": "A brown cabinet (about 65 x 40 x 105 cm) was removed from a surface about 0.14 m high, 0.1 m ahead of and 2.0 m to the right of the starting point.",
+      "box": {
+        "center": [
+          1.956,
+          0.086,
+          0.663
+        ],
+        "size": [
+          0.642,
+          0.397,
+          1.041
+        ],
+        "yaw_deg": 4.5
+      },
+      "points": 239,
+      "confidence": 0.33,
+      "evidence": {
+        "see_through_views": 6,
+        "appearance_changed": 0.735,
+        "edge_excess": -0.062,
+        "local_recheck": {
+          "still_gone": 0.921,
+          "local_shift_m": 0.078
+        }
+      },
+      "confident": false
+    },
+    {
+      "id": 2,
+      "type": "added",
+      "label": "bed",
+      "label_score": 0.583,
+      "color": "grey",
+      "description": "A grey bed (about 70 x 30 x 35 cm) appeared on a surface about 0.53 m high, 2.3 m ahead of and 1.9 m to the right of the starting point.",
+      "box": {
+        "center": [
+          1.924,
+          2.344,
+          0.709
+        ],
+        "size": [
+          0.702,
+          0.294,
+          0.36
+        ],
+        "yaw_deg": 117.8
+      },
+      "points": 252,
+      "confidence": 0.17,
+      "evidence": {
+        "see_through_views": 16,
+        "appearance_changed": 0.574,
+        "edge_excess": 0.202,
+        "local_recheck": {
+          "still_gone": 0.972,
+          "local_shift_m": 0.014
+        }
+      },
+      "confident": false
+    },
+    {
+      "id": 3,
+      "type": "removed",
+      "label": "cabinet",
+      "label_score": 0.55,
+      "color": "orange",
+      "description": "An orange cabinet (about 20 x 10 x 60 cm) was removed from the floor, 0.1 m behind and 1.3 m to the right of the starting point.",
+      "box": {
+        "center": [
+          1.274,
+          -0.121,
+          0.299
+        ],
+        "size": [
+          0.225,
+          0.123,
+          0.597
+        ],
+        "yaw_deg": 3.0
+      },
+      "points": 93,
+      "confidence": 0.0,
+      "evidence": {
+        "see_through_views": 4,
+        "appearance_changed": 0.87,
+        "edge_excess": -0.226,
+        "local_recheck": {
+          "still_gone": 0.914,
+          "local_shift_m": 0.015
+        }
+      },
+      "confident": false
+    },
+    {
+      "id": 4,
+      "type": "added",
+      "label": "water bottle",
+      "label_score": 0.312,
+      "color": "grey",
+      "description": "A grey object (probably a water bottle) (about 20 x 10 x 15 cm) appeared on a surface about 0.71 m high, 2.7 m ahead of the starting point.",
+      "box": {
+        "center": [
+          -0.22,
+          2.719,
+          0.781
+        ],
+        "size": [
+          0.212,
+          0.096,
+          0.137
+        ],
+        "yaw_deg": 122.9
+      },
+      "points": 42,
+      "confidence": 0.0,
+      "evidence": {
+        "see_through_views": 5,
+        "appearance_changed": 0.906,
+        "edge_excess": -0.292,
+        "local_recheck": {
+          "still_gone": 0.976,
+          "local_shift_m": 0.008
+        }
+      },
+      "confident": false
+    }
+  ]
+}

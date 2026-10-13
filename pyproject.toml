@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "roomdiff"
+version = "0.1.0"
+description = "What changed in the room? Visibility-aware 3D change detection from two phone videos."
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Nehith Vemulapalli"}]
+dependencies = [
+  "numpy>=1.24", "scipy>=1.10", "scikit-learn>=1.3", "opencv-python>=4.8",
+  "matplotlib>=3.7", "plotly>=5.18", "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+semantic = ["open_clip_torch>=2.24"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+roomdiff = "roomdiff.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["roomdiff*"]

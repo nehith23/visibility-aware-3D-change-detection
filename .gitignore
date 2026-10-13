@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+third_party/
+results/
+*.egg-info/
+# cached reconstructions and raw keyframes are large; keep example outputs only
+**/recon.npz
+examples/synthetic/frames/
+data/**/*.mov
+data/**/*.MOV
+data/**/*.mp4
+!examples/corridor_right/recon.npz
+!examples/room_A/recon.npz
+data/
+logs/
+.venv/

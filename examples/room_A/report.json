@@ -1,0 +1,494 @@
+{
+  "summary": {
+    "scale": 2.056429516863984,
+    "camera_height": 1.2,
+    "floor_inlier_ratio": 0.8264159008335115,
+    "alignment": {
+      "icp_rotation_deg": 0.05474285559324909,
+      "icp_translation_m": 0.0026257024951387444,
+      "icp_overlap_before": 0.8704924689185792,
+      "icp_overlap_after": 0.8705698099344535,
+      "icp_iterations": 8,
+      "icp": "rejected"
+    },
+    "coverage": {
+      "before_verified": 0.9187912621618304,
+      "after_verified": 0.9786648693361111
+    },
+    "point_states": {
+      "before": {
+        "points": 187369,
+        "present": 0.8993857041452962,
+        "gone": 0.018669043438348926,
+        "unobserved": 0.0812087378381696,
+        "ambiguous": 0.0007365145781852921
+      },
+      "after": {
+        "points": 163205,
+        "present": 0.9610857510492938,
+        "gone": 0.017511718390980667,
+        "unobserved": 0.021335130663888972,
+        "ambiguous": 6.739989583652461e-05
+      }
+    },
+    "suppressed": [],
+    "rejected_by_filters": [
+      {
+        "scan": "before",
+        "center": [
+          1.31,
+          0.91,
+          0.56
+        ],
+        "size_m": [
+          0.12,
+          0.03,
+          0.13
+        ],
+        "points": 28,
+        "filter": "line-like (tube or cable, below depth resolution)",
+        "detail": ""
+      },
+      {
+        "scan": "before",
+        "center": [
+          -0.43,
+          1.59,
+          1.33
+        ],
+        "size_m": [
+          0.2,
+          0.09,
+          0.04
+        ],
+        "points": 45,
+        "filter": "looks the same in the other recording",
+        "detail": "only 40% of the see-through views look different"
+      },
+      {
+        "scan": "before",
+        "center": [
+          1.81,
+          2.56,
+          0.85
+        ],
+        "size_m": [
+          0.22,
+          0.17,
+          0.25
+        ],
+        "points": 59,
+        "filter": "looks the same in the other recording",
+        "detail": "only 31% of the see-through views look different"
+      },
+      {
+        "scan": "before",
+        "center": [
+          1.96,
+          2.41,
+          0.92
+        ],
+        "size_m": [
+          0.26,
+          0.11,
+          0.35
+        ],
+        "points": 86,
+        "filter": "looks the same in the other recording",
+        "detail": "only 45% of the see-through views look different"
+      },
+      {
+        "scan": "before",
+        "center": [
+          -0.32,
+          2.14,
+          1.26
+        ],
+        "size_m": [
+          0.24,
+          0.18,
+          0.12
+        ],
+        "points": 38,
+        "filter": "see-through structure (slats, spokes, cables)",
+        "detail": "86% of observations on depth edges, 48% expected for a solid object"
+      },
+      {
+        "scan": "before",
+        "center": [
+          -0.26,
+          1.95,
+          1.14
+        ],
+        "size_m": [
+          0.11,
+          0.09,
+          0.17
+        ],
+        "points": 26,
+        "filter": "see-through structure (slats, spokes, cables)",
+        "detail": "92% of observations on depth edges, 57% expected for a solid object"
+      },
+      {
+        "scan": "before",
+        "center": [
+          1.46,
+          0.13,
+          0.29
+        ],
+        "size_m": [
+          0.24,
+          0.03,
+          0.17
+        ],
+        "points": 32,
+        "filter": "see-through structure (slats, spokes, cables)",
+        "detail": "100% of observations on depth edges, 66% expected for a solid object"
+      },
+      {
+        "scan": "after",
+        "center": [
+          2.01,
+          1.85,
+          1.07
+        ],
+        "size_m": [
+          1.04,
+          0.21,
+          0.24
+        ],
+        "points": 357,
+        "filter": "looks the same in the other recording",
+        "detail": "only 42% of the see-through views look different"
+      },
+      {
+        "scan": "before",
+        "center": [
+          -0.27,
+          0.55,
+          1.26
+        ],
+        "size_m": [
+          0.22,
+          0.08,
+          0.13
+        ],
+        "points": 50,
+        "filter": "small and evidence not strong enough",
+        "detail": ""
+      }
+    ],
+    "config": {
+      "frames_per_video": 0,
+      "max_side": 0,
+      "conf_drop_percentile": 25.0,
+      "camera_height": 1.2,
+      "scale": 0.0,
+      "pixel_stride": 2,
+      "voxel": 0.02,
+      "flying_pixel_ratio": 0.04,
+      "min_self_support": 2,
+      "max_depth": 4.5,
+      "depth_tol_abs": 0.06,
+      "depth_tol_rel": 0.04,
+      "window": 5,
+      "grazing_min_cos": 0.5,
+      "grazing_min_cos_floor": 0.2,
+      "floor_band": 0.06,
+      "min_height": 0.08,
+      "min_votes": 2,
+      "vanish_ratio": 0.7,
+      "cluster_eps": 0.06,
+      "cluster_min_samples": 6,
+      "min_cluster_points": 25,
+      "min_cluster_extent": 0.07,
+      "max_sheet_area": 1.0,
+      "sheet_max_thickness": 0.03,
+      "sheet_max_flatness": 0.2,
+      "sheet_min_extent": 0.12,
+      "match_cost": 0.85,
+      "merge_gap": 0.1,
+      "move_max_size_ratio": 2.0,
+      "move_max_color": 30.0,
+      "move_min_points": 60,
+      "pole_max_width": 0.06,
+      "pole_aspect": 3.0,
+      "line_max_spread": 0.018,
+      "local_radius": 0.6,
+      "local_keep_gone": 0.6,
+      "edge_max_excess": 0.25,
+      "min_report_points": 120,
+      "confident_score": 0.5,
+      "appearance_delta_e": 18.0,
+      "appearance_min_changed": 0.45,
+      "use_clip": true,
+      "clip_model": "ViT-B-32",
+      "clip_pretrained": "laion2b_s34b_b79k"
+    }
+  },
+  "changes": [
+    {
+      "id": 1,
+      "type": "moved",
+      "label": "laundry basket",
+      "label_score": 0.705,
+      "color": "brown",
+      "description": "The brown laundry basket moved 0.4 m forward. It now stands on the floor, 0.6 m ahead of and 2.1 m to the right of the starting point.",
+      "box": {
+        "center": [
+          2.066,
+          0.149,
+          0.47
+        ],
+        "size": [
+          0.543,
+          0.386,
+          0.662
+        ],
+        "yaw_deg": 108.5
+      },
+      "points": 888,
+      "confidence": 0.76,
+      "evidence": {
+        "from": {
+          "see_through_views": 19,
+          "appearance_changed": 0.894,
+          "edge_excess": -0.017,
+          "local_recheck": {
+            "still_gone": 0.983,
+            "local_shift_m": 0.013
+          }
+        },
+        "to": {
+          "see_through_views": 8,
+          "appearance_changed": 0.782,
+          "edge_excess": -0.026,
+          "local_recheck": {
+            "still_gone": 0.972,
+            "local_shift_m": 0.01
+          }
+        }
+      },
+      "to_box": {
+        "center": [
+          2.065,
+          0.566,
+          0.166
+        ],
+        "size": [
+          0.356,
+          0.351,
+          0.332
+        ],
+        "yaw_deg": 3.6
+      },
+      "displacement_m": [
+        -0.001,
+        0.417,
+        -0.139
+      ],
+      "rotation_deg": null,
+      "confident": true
+    },
+    {
+      "id": 2,
+      "type": "added",
+      "label": "bed",
+      "label_score": 0.91,
+      "color": "black",
+      "description": "A black bed (about 50 x 40 x 25 cm) appeared on a surface about 0.52 m high, 2.6 m ahead of and 1.3 m to the right of the starting point.",
+      "box": {
+        "center": [
+          1.257,
+          2.577,
+          0.634
+        ],
+        "size": [
+          0.49,
+          0.403,
+          0.225
+        ],
+        "yaw_deg": 100.9
+      },
+      "points": 807,
+      "confidence": 0.71,
+      "evidence": {
+        "see_through_views": 17,
+        "appearance_changed": 0.875,
+        "edge_excess": -0.083,
+        "local_recheck": {
+          "still_gone": 0.989,
+          "local_shift_m": 0.007
+        }
+      },
+      "confident": true
+    },
+    {
+      "id": 3,
+      "type": "removed",
+      "label": "backpack",
+      "label_score": 0.859,
+      "color": "black",
+      "description": "A black backpack (about 35 x 30 x 35 cm) was removed from a surface about 0.54 m high, 1.4 m ahead of and 1.2 m to the right of the starting point.",
+      "box": {
+        "center": [
+          1.178,
+          1.429,
+          0.725
+        ],
+        "size": [
+          0.333,
+          0.323,
+          0.363
+        ],
+        "yaw_deg": 176.8
+      },
+      "points": 1078,
+      "confidence": 0.55,
+      "evidence": {
+        "see_through_views": 24,
+        "appearance_changed": 0.973,
+        "edge_excess": 0.18,
+        "local_recheck": {
+          "still_gone": 1.0,
+          "local_shift_m": 0.005
+        }
+      },
+      "confident": true
+    },
+    {
+      "id": 4,
+      "type": "added",
+      "label": "backpack",
+      "label_score": 0.933,
+      "color": "brown",
+      "description": "A brown backpack (about 40 x 20 x 15 cm) appeared on a surface about 0.72 m high, 0.2 m ahead of and 2.1 m to the right of the starting point.",
+      "box": {
+        "center": [
+          2.133,
+          0.167,
+          0.804
+        ],
+        "size": [
+          0.403,
+          0.192,
+          0.171
+        ],
+        "yaw_deg": 89.8
+      },
+      "points": 256,
+      "confidence": 0.45,
+      "evidence": {
+        "see_through_views": 14,
+        "appearance_changed": 0.86,
+        "edge_excess": -0.078,
+        "local_recheck": {
+          "still_gone": 1.0,
+          "local_shift_m": 0.006
+        }
+      },
+      "confident": false
+    },
+    {
+      "id": 5,
+      "type": "moved",
+      "label": "printer",
+      "label_score": 0.403,
+      "color": "grey",
+      "description": "The grey printer moved 2.2 m to the right, down 0.3 m. It now stands on a surface about 0.51 m high, 2.3 m ahead of and 1.9 m to the right of the starting point.",
+      "box": {
+        "center": [
+          -0.271,
+          2.385,
+          0.926
+        ],
+        "size": [
+          0.381,
+          0.308,
+          0.32
+        ],
+        "yaw_deg": 176.2
+      },
+      "points": 726,
+      "confidence": 0.44,
+      "evidence": {
+        "from": {
+          "see_through_views": 19,
+          "appearance_changed": 0.805,
+          "edge_excess": 0.153,
+          "local_recheck": {
+            "still_gone": 0.988,
+            "local_shift_m": 0.005
+          }
+        },
+        "to": {
+          "see_through_views": 14,
+          "appearance_changed": 0.715,
+          "edge_excess": 0.038,
+          "local_recheck": {
+            "still_gone": 0.969,
+            "local_shift_m": 0.006
+          },
+          "clip_guess": {
+            "label": "bed",
+            "score": 0.983,
+            "why_not_used": "15 cm tall, a bed is 25 to 130 cm"
+          }
+        }
+      },
+      "to_box": {
+        "center": [
+          1.896,
+          2.263,
+          0.613
+        ],
+        "size": [
+          0.548,
+          0.379,
+          0.21
+        ],
+        "yaw_deg": 96.9
+      },
+      "displacement_m": [
+        2.167,
+        -0.122,
+        -0.258
+      ],
+      "rotation_deg": null,
+      "confident": false
+    },
+    {
+      "id": 6,
+      "type": "added",
+      "label": "printer",
+      "label_score": 0.67,
+      "color": "grey",
+      "description": "A grey printer (about 20 x 10 x 20 cm) appeared on a surface about 0.63 m high, 2.8 m ahead of and 0.3 m to the left of the starting point.",
+      "box": {
+        "center": [
+          -0.323,
+          2.764,
+          0.741
+        ],
+        "size": [
+          0.191,
+          0.118,
+          0.218
+        ],
+        "yaw_deg": 60.4
+      },
+      "points": 38,
+      "confidence": 0.0,
+      "evidence": {
+        "see_through_views": 5,
+        "appearance_changed": 0.938,
+        "edge_excess": -0.103,
+        "local_recheck": {
+          "still_gone": 0.974,
+          "local_shift_m": 0.01
+        }
+      },
+      "confident": false
+    }
+  ]
+}

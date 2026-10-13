@@ -1,0 +1,59 @@
+{
+  "all_candidates": {
+    "recall": 1.0,
+    "precision": 1.0
+  },
+  "confident_only": {
+    "recall": 0.5,
+    "precision": 1.0
+  },
+  "per_change": [
+    {
+      "object": "chair",
+      "type": "moved",
+      "found": true,
+      "confident": true,
+      "confidence": 0.99,
+      "xy_error_m": 0.001,
+      "z_error_m": 0.009,
+      "true_turn": 90.0,
+      "est_turn": 90.0
+    },
+    {
+      "object": "cardboard box",
+      "type": "removed",
+      "found": true,
+      "confident": false,
+      "confidence": 0.5,
+      "xy_error_m": 0.009,
+      "z_error_m": 0.003
+    },
+    {
+      "object": "backpack",
+      "type": "added",
+      "found": true,
+      "confident": true,
+      "confidence": 0.58,
+      "xy_error_m": 0.008,
+      "z_error_m": 0.003
+    },
+    {
+      "object": "bottle",
+      "type": "added",
+      "found": true,
+      "confident": false,
+      "confidence": 0.13,
+      "xy_error_m": 0.003,
+      "z_error_m": 0.001
+    }
+  ],
+  "false_positives": [],
+  "occlusion_traps": [
+    {
+      "object": "bin",
+      "points": 1085,
+      "unobserved_share": 1.0,
+      "wrongly_reported": false
+    }
+  ]
+}

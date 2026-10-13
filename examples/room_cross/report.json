@@ -1,0 +1,520 @@
+{
+  "summary": {
+    "scale": 2.092191563069211,
+    "camera_height": 1.2,
+    "floor_inlier_ratio": 0.8075872046294807,
+    "alignment": {
+      "icp_rotation_deg": 0.1506154074105359,
+      "icp_translation_m": 0.0045894085774811025,
+      "icp_overlap_before": 0.8523181925158861,
+      "icp_overlap_after": 0.8521416803953872,
+      "icp_iterations": 7,
+      "icp": "rejected"
+    },
+    "coverage": {
+      "before_verified": 0.9044301496910351,
+      "after_verified": 0.9741620947473844
+    },
+    "point_states": {
+      "before": {
+        "points": 181574,
+        "present": 0.8832707325938736,
+        "gone": 0.02035533721788362,
+        "unobserved": 0.09556985030896493,
+        "ambiguous": 0.0008040798792778702
+      },
+      "after": {
+        "points": 158759,
+        "present": 0.9572874608683603,
+        "gone": 0.016843139601534402,
+        "unobserved": 0.0258379052526156,
+        "ambiguous": 3.149427748978011e-05
+      }
+    },
+    "suppressed": [],
+    "rejected_by_filters": [
+      {
+        "scan": "before",
+        "center": [
+          1.76,
+          2.72,
+          0.99
+        ],
+        "size_m": [
+          0.26,
+          0.16,
+          0.52
+        ],
+        "points": 107,
+        "filter": "looks the same in the other recording",
+        "detail": "only 30% of the see-through views look different"
+      },
+      {
+        "scan": "before",
+        "center": [
+          2.15,
+          0.14,
+          0.18
+        ],
+        "size_m": [
+          0.27,
+          0.13,
+          0.13
+        ],
+        "points": 38,
+        "filter": "looks the same in the other recording",
+        "detail": "only 45% of the see-through views look different"
+      },
+      {
+        "scan": "before",
+        "center": [
+          -0.28,
+          1.97,
+          1.13
+        ],
+        "size_m": [
+          0.12,
+          0.08,
+          0.11
+        ],
+        "points": 26,
+        "filter": "see-through structure (slats, spokes, cables)",
+        "detail": "90% of observations on depth edges, 53% expected for a solid object"
+      },
+      {
+        "scan": "after",
+        "center": [
+          1.92,
+          2.41,
+          0.89
+        ],
+        "size_m": [
+          0.61,
+          0.2,
+          0.25
+        ],
+        "points": 88,
+        "filter": "looks the same in the other recording",
+        "detail": "only 37% of the see-through views look different"
+      },
+      {
+        "scan": "after",
+        "center": [
+          1.85,
+          0.09,
+          0.18
+        ],
+        "size_m": [
+          0.26,
+          0.05,
+          0.14
+        ],
+        "points": 41,
+        "filter": "looks the same in the other recording",
+        "detail": "only 35% of the see-through views look different"
+      },
+      {
+        "scan": "after",
+        "center": [
+          2.02,
+          2.25,
+          1.27
+        ],
+        "size_m": [
+          0.35,
+          0.1,
+          0.11
+        ],
+        "points": 60,
+        "filter": "looks the same in the other recording",
+        "detail": "only 35% of the see-through views look different"
+      },
+      {
+        "scan": "before",
+        "center": [
+          1.31,
+          0.94,
+          0.53
+        ],
+        "size_m": [
+          0.15,
+          0.03,
+          0.35
+        ],
+        "points": 38,
+        "filter": "small and evidence not strong enough",
+        "detail": ""
+      },
+      {
+        "scan": "before",
+        "center": [
+          2.08,
+          1.8,
+          0.79
+        ],
+        "size_m": [
+          0.23,
+          0.1,
+          0.26
+        ],
+        "points": 65,
+        "filter": "small and evidence not strong enough",
+        "detail": ""
+      },
+      {
+        "scan": "after",
+        "center": [
+          -0.3,
+          2.82,
+          0.73
+        ],
+        "size_m": [
+          0.21,
+          0.06,
+          0.22
+        ],
+        "points": 70,
+        "filter": "small and evidence not strong enough",
+        "detail": ""
+      },
+      {
+        "scan": "after",
+        "center": [
+          1.96,
+          2.36,
+          0.61
+        ],
+        "size_m": [
+          0.29,
+          0.17,
+          0.14
+        ],
+        "points": 62,
+        "filter": "small and evidence not strong enough",
+        "detail": ""
+      }
+    ],
+    "config": {
+      "frames_per_video": 0,
+      "max_side": 0,
+      "conf_drop_percentile": 25.0,
+      "camera_height": 1.2,
+      "scale": 0.0,
+      "pixel_stride": 2,
+      "voxel": 0.02,
+      "flying_pixel_ratio": 0.04,
+      "min_self_support": 2,
+      "max_depth": 4.5,
+      "depth_tol_abs": 0.06,
+      "depth_tol_rel": 0.04,
+      "window": 5,
+      "grazing_min_cos": 0.5,
+      "grazing_min_cos_floor": 0.2,
+      "floor_band": 0.06,
+      "min_height": 0.08,
+      "min_votes": 2,
+      "vanish_ratio": 0.7,
+      "cluster_eps": 0.06,
+      "cluster_min_samples": 6,
+      "min_cluster_points": 25,
+      "min_cluster_extent": 0.07,
+      "max_sheet_area": 1.0,
+      "sheet_max_thickness": 0.03,
+      "sheet_max_flatness": 0.2,
+      "sheet_min_extent": 0.12,
+      "match_cost": 0.85,
+      "merge_gap": 0.1,
+      "move_max_size_ratio": 2.0,
+      "move_max_color": 30.0,
+      "move_min_points": 60,
+      "pole_max_width": 0.06,
+      "pole_aspect": 3.0,
+      "line_max_spread": 0.018,
+      "local_radius": 0.6,
+      "local_keep_gone": 0.6,
+      "edge_max_excess": 0.25,
+      "min_report_points": 120,
+      "confident_score": 0.5,
+      "appearance_delta_e": 18.0,
+      "appearance_min_changed": 0.45,
+      "use_clip": true,
+      "clip_model": "ViT-B-32",
+      "clip_pretrained": "laion2b_s34b_b79k"
+    }
+  },
+  "changes": [
+    {
+      "id": 1,
+      "type": "moved",
+      "label": "trash can",
+      "label_score": 0.553,
+      "color": "brown",
+      "description": "The brown trash can moved 0.2 m forward, down 0.3 m. It now stands on the floor, 0.4 m ahead of and 2.1 m to the right of the starting point.",
+      "box": {
+        "center": [
+          2.097,
+          0.225,
+          0.578
+        ],
+        "size": [
+          0.633,
+          0.441,
+          0.54
+        ],
+        "yaw_deg": 93.0
+      },
+      "points": 922,
+      "confidence": 0.7,
+      "evidence": {
+        "from": {
+          "see_through_views": 13,
+          "appearance_changed": 0.886,
+          "edge_excess": 0.004,
+          "local_recheck": {
+            "still_gone": 0.951,
+            "local_shift_m": 0.014
+          }
+        },
+        "to": {
+          "see_through_views": 8,
+          "appearance_changed": 0.859,
+          "edge_excess": -0.006,
+          "local_recheck": {
+            "still_gone": 0.994,
+            "local_shift_m": 0.005
+          }
+        }
+      },
+      "to_box": {
+        "center": [
+          2.1,
+          0.428,
+          0.165
+        ],
+        "size": [
+          0.671,
+          0.355,
+          0.33
+        ],
+        "yaw_deg": 91.2
+      },
+      "displacement_m": [
+        0.003,
+        0.203,
+        -0.308
+      ],
+      "rotation_deg": null,
+      "confident": true
+    },
+    {
+      "id": 2,
+      "type": "moved",
+      "label": "backpack",
+      "label_score": 0.956,
+      "color": "black",
+      "description": "The black backpack moved 1.1 m forward. It now stands on a surface about 0.52 m high, 2.6 m ahead of and 1.3 m to the right of the starting point.",
+      "box": {
+        "center": [
+          1.198,
+          1.44,
+          0.725
+        ],
+        "size": [
+          0.322,
+          0.306,
+          0.369
+        ],
+        "yaw_deg": 8.2
+      },
+      "points": 1112,
+      "confidence": 0.65,
+      "evidence": {
+        "from": {
+          "see_through_views": 23,
+          "appearance_changed": 0.98,
+          "edge_excess": 0.192,
+          "local_recheck": {
+            "still_gone": 0.992,
+            "local_shift_m": 0.004
+          }
+        },
+        "to": {
+          "see_through_views": 16,
+          "appearance_changed": 0.925,
+          "edge_excess": -0.03,
+          "local_recheck": {
+            "still_gone": 0.988,
+            "local_shift_m": 0.011
+          },
+          "clip_guess": {
+            "label": "bed",
+            "score": 0.946,
+            "why_not_used": "16 cm tall, a bed is 25 to 130 cm"
+          }
+        }
+      },
+      "to_box": {
+        "center": [
+          1.261,
+          2.585,
+          0.629
+        ],
+        "size": [
+          0.454,
+          0.358,
+          0.208
+        ],
+        "yaw_deg": 94.5
+      },
+      "displacement_m": [
+        0.064,
+        1.145,
+        -0.015
+      ],
+      "rotation_deg": null,
+      "confident": true
+    },
+    {
+      "id": 3,
+      "type": "removed",
+      "label": "object",
+      "label_score": 0.0,
+      "color": "grey",
+      "description": "A grey object (about 65 x 25 x 35 cm) was removed from a surface about 0.73 m high, 2.5 m ahead of and 0.3 m to the left of the starting point.",
+      "box": {
+        "center": [
+          -0.32,
+          2.535,
+          0.909
+        ],
+        "size": [
+          0.649,
+          0.267,
+          0.356
+        ],
+        "yaw_deg": 136.4
+      },
+      "points": 715,
+      "confidence": 0.44,
+      "evidence": {
+        "see_through_views": 20,
+        "appearance_changed": 0.799,
+        "edge_excess": 0.155,
+        "local_recheck": {
+          "still_gone": 0.997,
+          "local_shift_m": 0.005
+        },
+        "clip_guess": {
+          "label": "desk",
+          "score": 0.685,
+          "why_not_used": "33 cm tall, a desk is 50 to 120 cm"
+        }
+      },
+      "confident": false
+    },
+    {
+      "id": 4,
+      "type": "added",
+      "label": "backpack",
+      "label_score": 0.894,
+      "color": "black",
+      "description": "A black backpack (about 25 x 20 x 20 cm) appeared on a surface about 0.74 m high, 0.2 m ahead of and 2.1 m to the right of the starting point.",
+      "box": {
+        "center": [
+          2.132,
+          0.154,
+          0.855
+        ],
+        "size": [
+          0.273,
+          0.222,
+          0.225
+        ],
+        "yaw_deg": 111.4
+      },
+      "points": 229,
+      "confidence": 0.42,
+      "evidence": {
+        "see_through_views": 13,
+        "appearance_changed": 0.888,
+        "edge_excess": -0.057,
+        "local_recheck": {
+          "still_gone": 0.991,
+          "local_shift_m": 0.003
+        }
+      },
+      "confident": false
+    },
+    {
+      "id": 5,
+      "type": "removed",
+      "label": "handbag",
+      "label_score": 0.474,
+      "color": "grey",
+      "description": "A grey handbag (about 60 x 35 x 45 cm) was removed from a surface about 0.67 m high, 2.4 m ahead of and 2.0 m to the right of the starting point.",
+      "box": {
+        "center": [
+          1.956,
+          2.431,
+          0.886
+        ],
+        "size": [
+          0.576,
+          0.351,
+          0.428
+        ],
+        "yaw_deg": 130.7
+      },
+      "points": 237,
+      "confidence": 0.28,
+      "evidence": {
+        "see_through_views": 12,
+        "appearance_changed": 0.578,
+        "edge_excess": -0.028,
+        "local_recheck": {
+          "still_gone": 0.992,
+          "local_shift_m": 0.009
+        }
+      },
+      "confident": false
+    },
+    {
+      "id": 6,
+      "type": "added",
+      "label": "small object",
+      "label_score": 0.0,
+      "color": "black",
+      "description": "A small black object (about 10 x 10 x 40 cm) appeared on a surface about 0.71 m high, 0.9 m ahead of the starting point.",
+      "box": {
+        "center": [
+          -0.049,
+          0.938,
+          0.916
+        ],
+        "size": [
+          0.102,
+          0.094,
+          0.405
+        ],
+        "yaw_deg": 130.4
+      },
+      "points": 37,
+      "confidence": 0.0,
+      "evidence": {
+        "see_through_views": 21,
+        "appearance_changed": 0.876,
+        "edge_excess": -0.034,
+        "local_recheck": {
+          "still_gone": 1.0,
+          "local_shift_m": 0.002
+        },
+        "clip_guess": {
+          "label": "computer monitor",
+          "score": 0.792,
+          "why_not_used": "13 cm tall, a computer monitor is 20 to 70 cm"
+        }
+      },
+      "confident": false
+    }
+  ]
+}

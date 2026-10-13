@@ -1,0 +1,333 @@
+{
+  "summary": {
+    "scale": 5.465248787471108,
+    "camera_height": 1.2,
+    "floor_inlier_ratio": 0.5738226205587824,
+    "alignment": {
+      "icp_rotation_deg": 1.7527069975579863,
+      "icp_translation_m": 0.03615746871212327,
+      "icp_overlap_before": 0.3950440090611977,
+      "icp_overlap_after": 0.4296719638935482,
+      "icp_iterations": 30,
+      "icp": "applied"
+    },
+    "coverage": {
+      "before_verified": 0.695871325473558,
+      "after_verified": 0.8390241127219973
+    },
+    "point_states": {
+      "before": {
+        "points": 327151,
+        "present": 0.6754312228909586,
+        "gone": 0.003729164819914963,
+        "unobserved": 0.30412867452644193,
+        "ambiguous": 0.016710937762684508
+      },
+      "after": {
+        "points": 316389,
+        "present": 0.7676752352325776,
+        "gone": 0.04518804383211806,
+        "unobserved": 0.16097588727800272,
+        "ambiguous": 0.026160833657301614
+      }
+    },
+    "suppressed": [
+      "before: region at [-0.12, 2.24, 1.72] looked like 'plain wall' (71%)",
+      "after: region at [1.72, 3.07, 0.99] looked like 'bare floor' (56%)"
+    ],
+    "rejected_by_filters": [
+      {
+        "scan": "after",
+        "center": [
+          2.56,
+          5.04,
+          0.92
+        ],
+        "size_m": [
+          2.14,
+          0.27,
+          1.37
+        ],
+        "points": 9205,
+        "filter": "planar slice of wall or floor (misregistration)",
+        "detail": ""
+      },
+      {
+        "scan": "after",
+        "center": [
+          0.09,
+          3.06,
+          0.71
+        ],
+        "size_m": [
+          0.56,
+          0.18,
+          1.28
+        ],
+        "points": 663,
+        "filter": "vanishes after local re-registration",
+        "detail": "only 55% still changed, shift 4.3 cm"
+      },
+      {
+        "scan": "after",
+        "center": [
+          1.23,
+          1.71,
+          1.32
+        ],
+        "size_m": [
+          0.74,
+          0.12,
+          0.71
+        ],
+        "points": 662,
+        "filter": "vanishes after local re-registration",
+        "detail": "only 46% still changed, shift 1.7 cm"
+      },
+      {
+        "scan": "after",
+        "center": [
+          0.53,
+          3.69,
+          0.3
+        ],
+        "size_m": [
+          0.16,
+          0.11,
+          0.29
+        ],
+        "points": 112,
+        "filter": "looks the same in the other recording",
+        "detail": "only 31% of the see-through views look different"
+      }
+    ],
+    "config": {
+      "frames_per_video": 0,
+      "max_side": 0,
+      "conf_drop_percentile": 25.0,
+      "camera_height": 1.2,
+      "scale": 0.0,
+      "pixel_stride": 2,
+      "voxel": 0.02,
+      "flying_pixel_ratio": 0.04,
+      "min_self_support": 2,
+      "max_depth": 4.5,
+      "depth_tol_abs": 0.06,
+      "depth_tol_rel": 0.04,
+      "window": 5,
+      "grazing_min_cos": 0.5,
+      "grazing_min_cos_floor": 0.2,
+      "floor_band": 0.06,
+      "min_height": 0.08,
+      "min_votes": 2,
+      "vanish_ratio": 0.7,
+      "cluster_eps": 0.06,
+      "cluster_min_samples": 6,
+      "min_cluster_points": 25,
+      "min_cluster_extent": 0.07,
+      "max_sheet_area": 1.0,
+      "sheet_max_thickness": 0.03,
+      "sheet_max_flatness": 0.2,
+      "sheet_min_extent": 0.12,
+      "match_cost": 0.85,
+      "merge_gap": 0.1,
+      "move_max_size_ratio": 2.0,
+      "move_max_color": 30.0,
+      "move_min_points": 60,
+      "pole_max_width": 0.06,
+      "pole_aspect": 3.0,
+      "line_max_spread": 0.018,
+      "local_radius": 0.6,
+      "local_keep_gone": 0.6,
+      "edge_max_excess": 0.25,
+      "min_report_points": 120,
+      "confident_score": 0.5,
+      "appearance_delta_e": 18.0,
+      "appearance_min_changed": 0.45,
+      "use_clip": true,
+      "clip_model": "ViT-B-32",
+      "clip_pretrained": "laion2b_s34b_b79k"
+    }
+  },
+  "changes": [
+    {
+      "id": 1,
+      "type": "removed",
+      "label": "suitcase",
+      "label_score": 0.998,
+      "color": "black",
+      "description": "A black suitcase (about 35 x 25 x 60 cm) was removed from the floor, 5.6 m ahead of and 2.6 m to the right of the starting point.",
+      "box": {
+        "center": [
+          2.607,
+          5.601,
+          0.344
+        ],
+        "size": [
+          0.342,
+          0.262,
+          0.593
+        ],
+        "yaw_deg": 169.1
+      },
+      "points": 291,
+      "confidence": 0.5,
+      "evidence": {
+        "see_through_views": 14,
+        "appearance_changed": 0.896,
+        "edge_excess": -0.04
+      },
+      "confident": true
+    },
+    {
+      "id": 2,
+      "type": "added",
+      "label": "suitcase",
+      "label_score": 0.999,
+      "color": "black",
+      "description": "A black suitcase (about 35 x 5 x 50 cm) appeared on the floor, 5.3 m ahead of and 2.5 m to the right of the starting point.",
+      "box": {
+        "center": [
+          2.465,
+          5.335,
+          0.307
+        ],
+        "size": [
+          0.361,
+          0.071,
+          0.494
+        ],
+        "yaw_deg": 91.8
+      },
+      "points": 351,
+      "confidence": 0.37,
+      "evidence": {
+        "see_through_views": 5,
+        "appearance_changed": 0.917,
+        "edge_excess": 0.111
+      },
+      "confident": false
+    },
+    {
+      "id": 3,
+      "type": "removed",
+      "label": "door",
+      "label_score": 0.835,
+      "color": "grey",
+      "description": "A grey door (about 65 x 5 x 145 cm) was removed from a surface about 0.27 m high, 5.0 m ahead of and 0.4 m to the right of the starting point.",
+      "box": {
+        "center": [
+          0.392,
+          4.955,
+          0.998
+        ],
+        "size": [
+          0.632,
+          0.054,
+          1.46
+        ],
+        "yaw_deg": 76.1
+      },
+      "points": 494,
+      "confidence": 0.33,
+      "evidence": {
+        "see_through_views": 7,
+        "appearance_changed": 0.979,
+        "edge_excess": 0.176
+      },
+      "confident": false
+    },
+    {
+      "id": 4,
+      "type": "added",
+      "label": "door",
+      "label_score": 0.968,
+      "color": "white",
+      "description": "A white door (about 30 x 10 x 110 cm) appeared on a surface about 0.15 m high, 7.7 m ahead of and 3.6 m to the right of the starting point.",
+      "box": {
+        "center": [
+          3.558,
+          7.682,
+          0.688
+        ],
+        "size": [
+          0.304,
+          0.097,
+          1.084
+        ],
+        "yaw_deg": 84.5
+      },
+      "points": 1125,
+      "confidence": 0.23,
+      "evidence": {
+        "see_through_views": 2,
+        "appearance_changed": 0.792,
+        "edge_excess": -0.215
+      },
+      "confident": false
+    },
+    {
+      "id": 5,
+      "type": "removed",
+      "label": "object",
+      "label_score": 0.0,
+      "color": "grey",
+      "description": "A grey object (about 25 x 10 x 65 cm) was removed from the floor, 9.4 m ahead of and 2.2 m to the right of the starting point.",
+      "box": {
+        "center": [
+          2.187,
+          9.447,
+          0.376
+        ],
+        "size": [
+          0.265,
+          0.104,
+          0.655
+        ],
+        "yaw_deg": 146.7
+      },
+      "points": 236,
+      "confidence": 0.12,
+      "evidence": {
+        "see_through_views": 2,
+        "appearance_changed": 0.737,
+        "edge_excess": -0.336,
+        "clip_guess": {
+          "label": "door",
+          "score": 0.992,
+          "why_not_used": "59 cm tall, a door is 100 to 230 cm"
+        }
+      },
+      "confident": false
+    },
+    {
+      "id": 6,
+      "type": "added",
+      "label": "cardboard box",
+      "label_score": 0.728,
+      "color": "grey",
+      "description": "A grey cardboard box (about 40 x 5 x 70 cm) appeared on the floor, 4.4 m ahead of the starting point.",
+      "box": {
+        "center": [
+          0.247,
+          4.387,
+          0.434
+        ],
+        "size": [
+          0.38,
+          0.074,
+          0.719
+        ],
+        "yaw_deg": 103.5
+      },
+      "points": 53,
+      "confidence": 0.0,
+      "evidence": {
+        "see_through_views": 2,
+        "appearance_changed": 0.981,
+        "edge_excess": -0.152
+      },
+      "confident": false
+    }
+  ]
+}
