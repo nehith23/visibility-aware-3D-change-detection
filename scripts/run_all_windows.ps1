@@ -1,7 +1,7 @@
 # One click: check the inputs, set up (first time only), check the GPU, reconstruct every
 # pair, then analyse them. Stops at the first failure with exit code 1. Log: logs\run_all.log.
 #   powershell -ExecutionPolicy Bypass -File scripts\run_all_windows.ps1
-# or double-click run_all.bat in the repo folder.
+# run_corridor.bat and run_room.bat call this with the corridor and room comparisons.
 param(
     # comparisons to run: name=before_folder,after_folder;name2=...
     [string]$Pairs = "corridor_right=data\corridor\before_Right,data\corridor\after_Right;corridor_same=data\corridor\before_Left,data\corridor\after_Left;corridor_cross=data\corridor\before_Left,data\corridor\after_Right;corridor_null=data\corridor\before_Left,data\corridor\before_Right",

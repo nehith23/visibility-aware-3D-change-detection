@@ -1,12 +1,14 @@
 # Design notes and trade-offs
 
-## The problem behind the problem
+This page explains each design choice and its trade-off. Measured results are in [RESULTS.md](RESULTS.md).
 
-Two recordings of a space never see the same surfaces. A naive point cloud diff ("is there a point near p in the other scan?") reports every surface the second camera simply did not look at as *removed*. For a robot that is worse than useless: it would plan around obstacles that are not there, or forget ones that are.
+## The core problem
 
-So the core question this system answers per 3D point is: **did the other recording's cameras see through the place where this point was?** Only evidence of empty space counts as a change. Missing evidence is reported as *unverified*.
+Two recordings of a space never see the same surfaces. A plain point cloud diff ("is there a point near p in the other scan?") reports every surface the second camera did not look at as *removed*. A robot using that would plan around obstacles that are not there.
 
-The second problem only showed up on real footage: learned depth is not perfectly rigid, and two recordings are never perfectly registered. Most of the work after the first version went into telling a real change from a few centimetres of misregistration. Sections 6 to 9 are about that.
+So the question asked of every 3D point is: **did a camera in the other recording see through the place where this point was?** Only evidence of empty space counts as a change. No evidence means *unverified*.
+
+The second problem showed up on real footage: learned depth is not perfectly rigid, and two recordings never line up perfectly. Most of the later work went into telling a real change from a few centimetres of misalignment (sections 5 to 9).
 
 ## Pipeline
 
@@ -36,15 +38,15 @@ Keyframes from both videos go through VGGT together. Every camera and depth map 
 
 **Memory.** VGGT's memory grows linearly with image tokens (frames x patches). The run measures the GPU and plans for it. The aggregator runs under bf16 autocast anyway, so below 16 GB its weights are stored in bf16 (frees about 1.8 GB); the heads stay in fp32 as in the reference code. An 8 GB laptop GPU then holds about 25 square frames at 518 px.
 
-**Stitching passes.** 25 frames for two recordings is too few to see every part of a 10 m corridor twice. So keyframes are split into several passes (`backends/stitch.py`). Every pass also contains the same 8 anchor frames, 4 spread over each recording, and the other frames are interleaved so each pass covers the whole space rather than one end. Each pass comes back in its own arbitrary similarity frame. An anchor's depth map in pass *j* and in pass 0 gives 3D points at *identical pixels*, so the transform between passes is a closed-form Umeyama fit on exact correspondences, with a trimmed refit to ignore the worst 20%. No feature matching, nothing to tune. On the corridor, 80 frames ran as 5 passes and the anchor residual was 0.7 to 1.6% of the scene size. An out-of-memory error retries with 20% fewer frames per pass.
+**Stitching passes.** 25 frames for two recordings is too few to see every part of a 10 m corridor twice. So keyframes are split into several passes (`backends/stitch.py`). Every pass also contains the same 8 anchor frames, 4 spread over each recording, and the other frames are interleaved so each pass covers the whole space rather than one end. Each pass comes back in its own arbitrary similarity frame. An anchor's depth map in pass *j* and in pass 0 gives 3D points at *identical pixels*, so the transform between passes is a closed-form Umeyama fit on exact correspondences, with a trimmed refit to ignore the worst 20%. No feature matching is needed. On the corridor, 80 frames ran as 5 passes and the anchor residual was 0.7 to 1.6% of the scene size. An out-of-memory error retries with 20% fewer frames per pass.
 
-*Trade-off:* frames in different passes never attend to each other, so cross-pass consistency is only as good as the anchors. One joint pass on a bigger GPU is strictly better; stitching is what makes 8 GB usable.
+*Trade-off:* frames in different passes never attend to each other, so cross-pass consistency is only as good as the anchors. One joint pass on a bigger GPU is better; stitching is what makes 8 GB usable.
 
-**Portrait footage.** VGGT is trained on landscape and square images. Narrow portrait frames gave strongly anisotropic intrinsics (fx 195 against fy 466 on the bedroom clips) and depth that did not agree between frames. Padding every frame to a square canvas, which is VGGT's own "pad" preprocessing, fixed it. Intrinsics are mapped back to the full-resolution frame afterwards, so crops for CLIP and the evidence sheet use the original pixels.
+**Portrait footage.** Narrow portrait frames, resized to VGGT's input width, gave strongly anisotropic intrinsics (fx 195 against fy 466 on the bedroom clips) and depth that did not agree between frames. Padding every frame to a square canvas, which is VGGT's own "pad" preprocessing, fixed it. Intrinsics are mapped back to the full-resolution frame afterwards, so crops for CLIP and the evidence sheet use the original pixels.
 
 **HDR.** iPhone footage is HLG HDR by default. Decoded naively it looks washed out, which hurts both depth and CLIP. The pipeline detects it and tone-maps to SDR with ffmpeg (downscaling to 1080p first, because tone mapping 4K is slow).
 
-The weights are licensed for non-commercial use (`VGGT-1B-Commercial` exists).
+The VGGT-1B weights are licensed for non-commercial use.
 
 ### 2. Free-space evidence, not proximity
 
@@ -82,7 +84,7 @@ People hold phones upright, so the average image "down" axis is a good gravity e
 
 VGGT's joint frame is good but not exact. After the room frame is set, the after cloud is refined onto the before cloud with trimmed point-to-plane ICP. It is accepted only if the share of points within 3 cm of the other cloud improves by at least 1%, and the correction is under 10 degrees and 0.5 m. An earlier version accepted on median distance, which can improve while the alignment gets worse (it rewards sliding onto the floor).
 
-Same-direction pairs needed 0.1 to 0.2 degrees of correction. Opposite-direction pairs needed 1.75 to 3.1 degrees, and that is where the remaining false positives come from (section 10).
+Same-direction pairs needed 0.1 to 0.2 degrees of correction. Opposite-direction pairs needed 1.75 to 3.1 degrees, and that is where most remaining false positives come from (see Known limitations).
 
 ### 6. Shape filters: what a real object does not look like
 
@@ -123,7 +125,7 @@ A move combines its two halves with a noisy-OR and multiplies by `0.6 + 0.4 x ma
 
 Every filter records what it rejected and why (`rejected_by_filters` in `report.json`, counts by reason in `report.md`), next to the candidates CLIP suppressed as bare wall or floor. Each reported change also carries the evidence behind its score.
 
-These are heuristic evidence scores, not calibrated probabilities. The factors and the 0.5 tier were tuned on the corridor (and the failed first bedroom attempt), with the no-change pairs as the main check. That is why the room was recorded as a held-out test (below).
+These are heuristic evidence scores, not calibrated probabilities. The factors and the 0.5 tier were tuned on the corridor and the failed first bedroom recordings, with the no-change pairs as the main check. The room recordings were then analysed with these settings frozen ([RESULTS.md](RESULTS.md)).
 
 ### 10. Objects, moves and semantics
 
@@ -132,46 +134,6 @@ Each region gets a gravity-aligned box from a minimum-area rectangle of its foot
 A region that vanished from "before" and one that appeared in "after" are paired as a **move** with the Hungarian algorithm on a cost combining size (log ratio of sorted dimensions), colour (Lab distance), CLIP embedding similarity and support height, with hard gates: sizes within 2x, colour within 30, at least 60 points each. Rotation comes from a yaw search minimising a symmetric chamfer distance between the two clusters. Symmetric because each cluster is a partial view, and a one-way distance rewards rotating the small one into the big one.
 
 Each region is cropped from the full-resolution frame that sees it best and labelled by CLIP (ViT-B-32, LAION-2B) over about 70 household classes plus a few structure classes (wall, floor, shadow, blurry photo). CLIP alone will call a 40 cm box a "wardrobe", so its probabilities are weighted by a loose size prior per class. If the winning label still contradicts the measured height by a wide margin (a 60 cm tall "door"), the name falls back to "object" and CLIP's guess is kept in the report. Crops that CLIP thinks are structure are suppressed and listed. Labels are local only, no API calls.
-
-## Held-out protocol
-
-The corridor, the first (failed) recordings of my bedroom and the synthetic room served as the development set: everything in sections 2 to 10 was adjusted while looking at their results. To get a test the settings were not fitted to, the bedroom was cleared and recorded again with a different protocol (0.5x lens, landscape), and before the first analysis of those new recordings:
-
-1. The code and config were frozen and hashed (`heldout/FREEZE.json`, checked by `scripts/verify_freeze.py`).
-2. The ground truth was written down from the person who moved the objects, with the backpack's move measured by tape.
-3. Each room pair was reconstructed and analysed once, and the results are reported as they came out.
-
-Later edits touch only the 3D page and the synthetic scoring, and are listed with their hashes in the same file. The verifier shows the shipped files match the manifest; it cannot prove when the videos were captured, so the claim rests on the protocol as described. And it is the same room seen during development, in a different state: this measures transfer to new captures, not to an unseen room.
-
-## Results and what they taught
-
-Full tables are in `docs/RESULTS.md` and `examples/ablation.md`.
-
-**Held-out room recordings** (4 changes: jug removed, backpack moved 1.7 m, box moved from a chair seat to the floor, duffel bag added):
-
-| pair | confident predictions | on a real change location | wrong associations |
-|---|---|---|---|
-| room_A | 3 | 3 | 0 |
-| room_B | 4 | 4 | 1 |
-| room_cross (different paths) | 2 | 2 | 1 |
-| room_null (nothing changed) | 0 | | |
-
-**Development corridor** (2 removed, 1 moved; final settings):
-
-| pair | found | confident false positives |
-|---|---|---|
-| same direction, right | 3 of 3 | 0 |
-| same direction, left | 2 of 3 confident, backpack low confidence (its new spot is never filmed) | 0 |
-| opposite directions | 3 of 3 | 1 |
-| opposite directions, nothing changed | | 1 |
-
-What they taught:
-
-* **Visibility test vs a nearest-neighbour diff:** on the same clouds it removes 56 to 96% of spatial false positives (about 90% on a typical pair, held-out included), without losing a real change. The filters and the confidence score remove most of the rest.
-* **No-change pairs:** they exposed the opposite-direction misalignment, which the change pairs alone did not show.
-* **Localisation transferred to the new recordings; association did not.** In the room every confident prediction sits where something changed, and the no-change pair has none. But only 5 of the 12 real changes come out as the right confident event; 2 more are found at one end only. Both association mistakes happen where the scene is hardest: two dark bags change on the same bed, and two different objects take turns on the same chair seat. The matcher sees a removal and an addition that agree in size, colour, CLIP embedding and height, and calls it a move. It has no outcome for "replaced by a different object in the same place". The same situation also hides changes: the backpack placed where the box stood fills space that was already occupied, so only a thin slice of it registers as new, too small and too light to pass the matcher's size and colour checks against the backpack's removal.
-* **Labels from one crop are fragile.** The best view of a duffel bag on a bed is mostly bed. The geometry was right in every one of those cases; the name was not.
-* **Recording matters more than any threshold.** The first bedroom attempt (portrait, 1x lens, mostly turning on the spot, thin clutter everywhere) failed. The same room, cleared and filmed in landscape on the 0.5x lens, gave a tighter reconstruction (stitch residual 0.3% against 0.7 to 1.6% for the corridor) and the held-out result above. Most of sections 6 to 8 came from studying the failure.
 
 ## Footage quality check
 
@@ -183,11 +145,13 @@ What they taught:
 
 It only says "re-record" when something is severe, otherwise it lists what to improve.
 
-## What is evaluated
+## What I learned from the results
 
-`python -m roomdiff demo` renders a synthetic room (ray-cast, with depth noise) and hides scale and gravity behind a random similarity transform, so the whole pipeline runs, room frame estimation included. The same room also runs through stitched passes in the tests. Planted changes: a chair moved 1.3 m and turned 90 degrees, a box removed, a backpack added on the floor, a bottle added on a table, plus a bin that only the first recording ever sees.
+* **Localisation transferred to the new room recordings; association did not.** The matcher links a removal and an addition when size, colour, CLIP embedding and height agree. It has no outcome for "a different object replaced this one", which is where both wrong links in the room came from.
+* **The no-change pairs were the most informative test.** They exposed the opposite-direction misalignment that the change pairs alone did not show.
+* **Recording mattered more than any threshold.** The first, cluttered bedroom recordings failed; most of sections 6 to 8 came from studying why. The same room, cleared and filmed on the 0.5x lens in landscape, reconstructed with a stitch residual of 0.3%, against 0.7 to 1.6% in the corridor.
 
-Result: all 4 found with no false positives; 2 of them in the confident tier (the flat-coloured boxes give the appearance check little to work with). Turn estimated at 90 degrees, horizontal and vertical position errors within 1 cm, and 100% of the bin's points marked unverified. It checks the geometry and visibility logic only; it does not test VGGT's depth quality, which is the main error source on real footage. That is what the corridor, the room and the no-change pairs are for.
+The synthetic room (`python -m roomdiff demo`) checks the geometry and visibility logic against exact ground truth, but not VGGT's depth quality, which is the main error source on real footage.
 
 ## Known limitations
 

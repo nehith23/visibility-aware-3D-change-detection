@@ -24,7 +24,7 @@ What I changed between "before" and "after":
 
 ### Why this counts as held out
 
-I developed and tuned everything on the corridor recordings, on earlier failed recordings of this same room, and on a synthetic room. Then I froze the code and saved a hash of every file in [heldout/FREEZE.json](../heldout/FREEZE.json). Only after that did I record and analyse these room videos, once each. `python scripts/verify_freeze.py` checks the detection code still matches the frozen hashes. This tests new recordings of a room I had used before, in a different state. It is not a test on a room the system has never seen.
+I developed and tuned everything on the corridor recordings, on earlier failed recordings of this same room, and on a synthetic room. I recorded these room videos while still working on the code, but ran no reconstruction or detection on them until I had frozen the code and saved a hash of every file in [heldout/FREEZE.json](../heldout/FREEZE.json). Each comparison was then analysed once. `python scripts/verify_freeze.py` checks the detection code still matches the frozen hashes. This tests new recordings of a room I had used before, in a different state. It is not a test on a room the system has never seen.
 
 ### What it found
 
@@ -39,12 +39,12 @@ Nothing changed (`room_null`, before_A vs before_B): no confident changes. Four 
 
 ### What I take from it
 
-* **Where something changed is right.** All nine confident predictions sit on a spot where something really changed, and the no-change comparison reports nothing confident.
-* **Which object went where is the weak part.** Both wrong links happen where two things change in the same place: two dark bags on the bed, and two objects swapping places on the chair seat. The matcher links a removal to an addition when size, colour, appearance and height agree, and here they do. It has no way to say "a different object replaced this one".
-* **The same situation hides changes.** The backpack sits where the box used to be, so most of its volume is in space that was already full. Only a 14 cm slice above the old box counts as new. That slice is too small and too light in colour for the matcher to link it to the backpack's removal.
-* **Names are unreliable.** The best view of a duffel bag on a bed is mostly bed, so CLIP says "bed". The jug's view is mostly the 3D printer next to it.
-* **Distances are about right.** The backpack's measured move is 1.58 m against 1.7 m by tape, 7% off. The only scale input is the 1.20 m phone height.
-* **The wide lens helped.** The footage check said the camera mostly turned on the spot, but the 0.5x lens still gave enough overlap and depth in a small room. The passes lined up to within 0.3% of the room size, against 0.7 to 1.6% in the corridor.
+* Where something changed is right. All nine confident predictions sit on a spot where something really changed, and the no-change comparison reports nothing confident.
+* Which object went where is the weak part. Both wrong links happen where two things change in the same place: two dark bags on the bed, and the box leaving the chair seat just as the backpack arrives on it. The matcher links a removal to an addition when size, colour, appearance and height agree, and here they do. It has no way to say "a different object replaced this one".
+* The same situation hides changes. The backpack sits where the box used to be, so most of its volume is in space that was already full. Only a 14 cm slice above the old box counts as new. That slice is too small and too light in colour for the matcher to link it to the backpack's removal.
+* Names are unreliable. The best view of a duffel bag on a bed is mostly bed, so CLIP says "bed". The jug's view is mostly the 3D printer next to it.
+* Distances are about right. The backpack's measured move is 1.58 m against 1.7 m by tape, 7% off. The only scale input is the 1.20 m phone height.
+* The wide lens helped. The footage check said the camera mostly turned on the spot, but the 0.5x lens still gave enough overlap and depth in a small room. The passes lined up to within 0.3% of the room size, against 0.7 to 1.6% in the corridor.
 
 Counted over the three comparisons with changes (12 real changes in total): 5 are reported as the right confident event, 2 more are found at one end only, and the rest are low confidence, wrongly linked or missed.
 
@@ -65,13 +65,13 @@ Before: a brown suitcase, a black folding chair with a cardboard box on it, and 
 
 I tuned the settings on these recordings, so this shows what the method can do, not how well it generalises.
 
-* **Same walking direction works cleanly.**
-* **Opposite directions are harder.** Walking one way, then back, gives few shared views of the same surfaces, so the two recordings line up less precisely: about 2 to 3 degrees of correction, against 0.2 degrees for the same direction. Door frames a few metres away end up a few centimetres off and look changed. Most of these false alarms are now filtered out, but not all.
-* **Names:** "brown storage box" for the chair with the box on it is fair. The suitcase is brown, but CLIP calls it black in the dim light.
+* Walking in the same direction gave no false alarms.
+* Opposite directions are harder. Walking one way, then back, gives few shared views of the same surfaces, so the two recordings line up less precisely: about 2 to 3 degrees of correction, against 0.2 degrees for the same direction. Door frames a few metres away end up a few centimetres off and look changed. Most of these false alarms are now filtered out, but not all.
+* Names: "brown storage box" for the chair with the box on it is fair. The suitcase is brown, but CLIP calls it black in the dim light.
 
 ![Corridor evidence](../examples/corridor_right/evidence.png)
 
-## 3. Is the visibility test doing the work?
+## 3. Baseline comparison
 
 [examples/ablation.md](../examples/ablation.md) compares four versions on the same data: a plain "is there a point nearby in the other scan" diff, the visibility test alone, the full pipeline with every candidate, and the full pipeline's confident changes only.
 

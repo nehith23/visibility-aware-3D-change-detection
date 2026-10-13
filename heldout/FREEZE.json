@@ -79,8 +79,8 @@
   },
   {
    "file": "roomdiff/__main__.py",
-   "why": "demo prints the new synthetic metrics",
-   "sha256": "08361a2ed28f8d6f88b7d1cca8a2e1d37114a9f6cb7de7341658939ea332f93b"
+   "why": "CLI only: demo prints the new synthetic metrics and writes to results/synthetic; doctor points to docs/SETUP.md",
+   "sha256": "b1ec1899b4ccec68874dc7b9944027cde18203d0c92f900cd8aea0c8c1b38ee8"
   }
  ],
  "detection_files_unchanged_since_freeze": true

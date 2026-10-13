@@ -122,7 +122,7 @@ def cmd_doctor(_a):
             print("  [warn] no CUDA GPU, reconstruction will be slow on CPU")
     except ImportError:
         ok = False
-        print("  [missing] torch  ->  see README, install the CUDA build of PyTorch")
+        print("  [missing] torch  ->  install the CUDA build of PyTorch, see docs/SETUP.md")
     try:
         import vggt  # noqa: F401
         print("  [ok] vggt")
@@ -175,7 +175,7 @@ def main(argv=None):
     ra.set_defaults(fn=cmd_reanalyse)
 
     d = sub.add_parser("demo", help="synthetic room with ground truth, no GPU needed")
-    d.add_argument("--out", default="examples/synthetic")
+    d.add_argument("--out", default="results/synthetic")
     d.add_argument("--frames", type=int)
     common(d)
     d.set_defaults(fn=cmd_demo)
